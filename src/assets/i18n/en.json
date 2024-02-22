@@ -2,10 +2,15 @@
   "PAGES": {
       "HOME": {
           "TITLE": "App works !",
-          "GO_TO_DETAIL": "Go to Detail"
+          "GO_TO_DETAIL": "Go to Detail",
+          "GO_TO_IMAGE_GALLERY": "Open Image Gallery"
       },
       "DETAIL": {
         "TITLE": "Detail page !",
+        "BACK_TO_HOME": "Back to Home"
+      },
+      "IMAGE_GALLERY": {
+        "TITLE": "Image Gallery",
         "BACK_TO_HOME": "Back to Home"
     }
   }

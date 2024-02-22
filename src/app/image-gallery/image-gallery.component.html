@@ -1,0 +1,25 @@
+<h1 class="title">
+  {{ 'PAGES.IMAGE_GALLERY.TITLE' | translate }}
+</h1>
+<a routerLink="/">{{ 'PAGES.IMAGE_GALLERY.BACK_TO_HOME' | translate }}</a>
+
+<!--<gallery gallerize [items]="images"></gallery>-->
+
+<div class="basic-container">
+  <h2>Basic Example</h2>
+  <gallery id="basic-test" fluid [items]="items" [itemTemplate]="itemTemplate" [gestures]="false"></gallery>
+</div>
+
+<div class="lightbox-example">
+  <h2>Lightbox Example</h2>
+  <button mat-raised-button color="primary" (click)="lightbox.open(0)">Open Lightbox</button>
+
+
+  <button mat-raised-button color="accent" (click)="lightbox.open(0, 'lightbox', {panelClass: 'fullscreen'})">Open Lightbox in fullscreen mode</button>
+</div>
+
+<ng-template #itemTemplate let-index="index" let-type="type" let-data="data" let-currIndex="currIndex">
+  <ng-container *ngIf="type === 'imageViewer' && index === currIndex" >
+    <ngx-imageviewer [src]="data.src"></ngx-imageviewer>
+  </ng-container>
+</ng-template>
