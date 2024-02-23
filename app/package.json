@@ -7,7 +7,5 @@
   },
   "version": "14.0.0",
   "main": "main.js",
-  "private": true,
-  "dependencies": {
-  }
+  "private": true
 }

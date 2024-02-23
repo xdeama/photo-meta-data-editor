@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 // If you import a module but never use any of the imported values other than as TypeScript types,
 // the resulting javascript file will look as if you never imported the module at all.
-import { ipcRenderer, webFrame } from 'electron';
+import { ipcRenderer, webFrame, app } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 
@@ -14,12 +14,14 @@ export class ElectronService {
   webFrame!: typeof webFrame;
   childProcess!: typeof childProcess;
   fs!: typeof fs;
+  app!: typeof app;
 
   constructor() {
     // Conditional imports
     if (this.isElectron) {
       this.ipcRenderer = (window as any).require('electron').ipcRenderer;
       this.webFrame = (window as any).require('electron').webFrame;
+      this.app = (window as any).require('electron').app; //doesnt work
 
       this.fs = (window as any).require('fs');
 
@@ -53,4 +55,18 @@ export class ElectronService {
   get isElectron(): boolean {
     return !!(window && window.process && window.process.type);
   }
+
+  getUserHome(): Promise<string> {
+    if (this.isElectron) {
+      this.ipcRenderer.send('get-user-home');
+      return new Promise((resolve) => {
+        this.ipcRenderer.once('user-home-reply', (event, homePath) => {
+          resolve(homePath);
+        });
+      });
+    } else {
+      return Promise.reject('Not running in Electron.');
+    }
+  }
+
 }

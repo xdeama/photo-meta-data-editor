@@ -1,4 +1,4 @@
-import {app, BrowserWindow, screen} from 'electron';
+import {app, BrowserWindow, screen, protocol, net} from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
@@ -75,6 +75,25 @@ try {
     if (win === null) {
       createWindow();
     }
+  });
+
+  /**
+   * First, you need to register your scheme before the app starts.
+   */
+  protocol.registerSchemesAsPrivileged([
+    {
+      scheme: 'extfile',
+      privileges: {
+        secure: true,
+        supportFetchAPI: true,
+        bypassCSP: true
+      }
+    }
+  ]);
+
+  app.whenReady().then(() => {
+    protocol.handle('extfile', (request) =>
+      net.fetch('file://' + request.url.slice('extfile://'.length)));
   });
 
 } catch (e) {

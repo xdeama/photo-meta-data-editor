@@ -1,0 +1,76 @@
+<mat-list>
+  <div mat-subheader>Filesystem</div>
+  <div mat-basic-chip>Current Path:{{currentPath}}</div>
+  <ng-container *ngFor="let entry of entries; let i = index; trackBy: trackByFn">
+    <a (click)="changeDir(entry.name)">
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>{{entry.name}}</div>
+      </mat-list-item>
+    </a>
+  </ng-container>
+</mat-list>
+
+
+<mat-list>
+  <div mat-subheader>Filesystem</div>
+  <div mat-basic-chip>Current Path:{{currentPath}}</div>
+  @for (entry of entries; track entry) {
+
+    <a (click)="changeDir(entry.name)">
+
+      <mat-list-item>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>{{entry.name}}</div>
+      </mat-list-item>
+
+
+    </a>
+
+  }
+</mat-list>
+
+<mat-list>
+  <mat-list-item><mat-icon mat-list-icon>folder</mat-icon>Pepper</mat-list-item>
+  <mat-list-item><mat-icon mat-list-icon>folder</mat-icon>Salt</mat-list-item>
+  <mat-list-item><mat-icon mat-list-icon>folder</mat-icon>Paprika</mat-list-item>
+</mat-list>
+
+<ul class="mdc-list">
+  <li class="mdc-list-item" tabindex="0">
+    <span class="mdc-list-item__ripple"></span>
+    <span class="mdc-list-item__text">Item 1 - Division 1</span>
+  </li>
+  <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
+    <span class="mdc-list-item__text">Item 2 - Division 1</span>
+  </li>
+  <li role="separator" class="mdc-list-divider"></li>
+  <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
+    <span class="mdc-list-item__text">Item 1 - Division 2</span>
+  </li>
+  <li class="mdc-list-item">
+    <span class="mdc-list-item__ripple"></span>
+    <span class="mdc-list-item__text">Item 2 - Division 2</span>
+  </li>
+</ul>
+
+<mat-chip-listbox aria-label="Fish selection">
+  <mat-chip-option>One fish</mat-chip-option>
+  <mat-chip-option>Two fish</mat-chip-option>
+  <mat-chip-option color="accent" selected>Accent fish</mat-chip-option>
+  <mat-chip-option color="warn">Warn fish</mat-chip-option>
+</mat-chip-listbox>
+
+<mat-divider></mat-divider>
+
+<img [src]="imagePath" alt="Description of the image" width="25%">
+
+<mat-form-field>
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

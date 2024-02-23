@@ -6,8 +6,12 @@ import { DetailRoutingModule } from './detail-routing.module';
 import { DetailComponent } from './detail.component';
 import { SharedModule } from '../shared/shared.module';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 @NgModule({
   declarations: [DetailComponent],
-  imports: [CommonModule, SharedModule, DetailRoutingModule]
+  imports: [CommonModule, SharedModule, DetailRoutingModule, MatSlideToggleModule]
 })
-export class DetailModule {}
+export class DetailModule {
+
+}
